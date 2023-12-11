@@ -7,6 +7,8 @@ urlpatterns = [
     path("distance", DistanceView.as_view(), name='my_distance_view'), 
     path("map", MapView.as_view(), name='my_map_view'), 
     path("loc",save_location),
+    path("login_final",login_final),
+    path("signup",signup),
    
 
 ]

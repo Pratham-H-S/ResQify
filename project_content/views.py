@@ -7,6 +7,7 @@ from django.conf import settings
 from .forms import *
 from datetime import datetime
 
+
 class HomeView(ListView):
     template_name = "project_content/home.html"
     context_object_name = 'mydata'
@@ -175,3 +176,38 @@ def save_location(request):
             return JsonResponse({'error': str(e)}, status=500)
     else:
         return render(request,"project_content/new.html")
+
+
+def login_final(request):
+    if request.method == 'POST':
+        data = request.POST
+        name = request.POST["name"]
+        print(name)
+        return render(request,"project_content/login_final.html")
+    return render(request,"project_content/login_final.html")
+
+
+# def register(response):
+#     if response.method == "POST":
+#         form = RegisterForm(response.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect("/home")
+#         else:
+#             form = RegisterForm()
+#     return render(response, "project_content/test_register.html", {"form":form})
+
+    
+from django.contrib.auth import authenticate, login
+
+
+def signup(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        print(username)
+        return render(request,"project_content/login_final.html")  # Redirect to your home page
+
+    return render(request, 'project_content/signup.html')
+  

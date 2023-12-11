@@ -1,6 +1,8 @@
 from django import forms 
 from django.forms import ModelForm
+
 from .models import *
+from django.contrib.auth.models import User
 
 modes = (
     ("driving", "driving"), 
@@ -16,3 +18,6 @@ class DistanceForm(ModelForm):
     class Meta: 
         model = Distances
         exclude = ['created_at', 'edited_at', 'distance_km','duration_mins','duration_traffic_mins']
+
+
+
