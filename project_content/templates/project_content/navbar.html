@@ -1,0 +1,64 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'project_content/navbar.css' %}">
+    <!-- font awesome cdn and copy the 1st link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <nav>
+       <article id="left">
+        <div id="logo"></div>
+        <aside class="logo_block" style="font-size: 40px; color: aqua;">ResQify</aside>
+        <aside class="hyper_link_block">
+            <ul>
+                <li id="Company">Company</li>
+                <!-- <select name="" id="" style="margin: 0;">
+                    <optgroup label="">
+                        <option value=""></option>
+                        <option value="">About us</option>
+                        <option value="">Our offerings</option>
+                        <option value="">How ResQify works</option>
+                    </optgroup>
+                    
+                </select> -->
+                <li id="Safety">Safety</li>
+                <li id="help">help</li>
+            </ul>
+        </aside>
+       </article>
+       <article id="right">
+        <a href="{% url 'login_final' %}" style="text-decoration: none; color: blanchedalmond;"><aside class="login_block">
+            login
+        </aside></a>
+        <a href="login_final" style="text-decoration: none; color: blanchedalmond;">  <aside class="signup_block">
+            sign up
+         </aside></a>
+      
+       </article>
+    </nav>
+    <section id="home">
+        <aside id="left">
+            <h1 style="font-size: 50px;">Log in to Access Your Account</h1>
+        </aside>
+        <aside id="right"></aside>
+    </section>
+    <section id="users">
+        <aside id="mech">
+            <div id="mechanic"><b>Mechanic</b>
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+        </aside>
+        <aside id="cust">
+            <div id="customer"><b>Customer</b>
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+        </aside>
+    </section>
+</body>
+</html>

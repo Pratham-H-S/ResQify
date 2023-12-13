@@ -9,6 +9,5 @@ urlpatterns = [
     path("loc",save_location),
     path("login_final",login_final),
     path("signup",signup),
-   
-
+    path("home",home),
 ]

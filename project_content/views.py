@@ -6,7 +6,9 @@ import googlemaps
 from django.conf import settings
 from .forms import *
 from datetime import datetime
-
+from Crypto.Cipher import AES
+from argon2 import PasswordHasher
+from Crypto.Random import get_random_bytes 
 
 class HomeView(ListView):
     template_name = "project_content/home.html"
@@ -203,11 +205,86 @@ from django.contrib.auth import authenticate, login
 
 def signup(request):
     if request.method == 'POST':
-        username = request.POST['username']
+        username = request.POST['name']
         email = request.POST['email']
-        password = request.POST['password']
-        print(username)
-        return render(request,"project_content/login_final.html")  # Redirect to your home page
+        password = request.POST['pass1']
+        mobile = request.POST['phone']
 
-    return render(request, 'project_content/signup.html')
-  
+        hasher = PasswordHasher()
+        hashed_password = hasher.hash(password)
+        new_customer = UsersCustomer(username=username, email=email, password=hashed_password,mobile = mobile)
+        new_customer.save()
+        # UsersCustomer.save(Username = username,Email = email,Password =password)
+        print(username)
+        return render(request,"project_content/login_final.html")
+    
+      # Redirect to your home page
+
+    # if request.method == 'POST':
+    #     username = request.POST['username']
+    #     password = request.POST['password']
+    #     confirm_password = request.POST['confirm_password']
+
+    #     # Check if the username already exists
+    #     if User.objects.filter(username=username).exists():
+            
+    #         return redirect('signup')
+
+    #     # Check if passwords match
+    #     if password != confirm_password:
+    #         messages.error(request, 'Passwords do not match.')
+    #         return redirect('signup')
+
+    #     # Create the user
+    #     user = User.objects.create_user(username=username, password=password)
+
+    #     # You can add additional logic here (e.g., sending a welcome email)
+        
+    #     messages.success(request, 'Account created successfully. You can now log in.')
+    #     return redirect('login') 
+
+    return render(request, 'project_content/login_final.html')
+
+# from django.shortcuts import render, redirect
+# from .models import Customer
+
+# def signup(request):
+#     if request.method == 'POST':
+#         username = request.POST.get('username')
+#         email = request.POST.get('email')
+#         password = request.POST.get('password')
+        
+#         # Add additional customer fields here...
+        
+#         # # Validate user input
+#         # if not username or not email or not password:
+#         #     error = "Please fill out all required fields."
+#         #     return render(request, 'project_content/signup.html', {'error': error})
+        
+#         # # Check for existing username or email
+#         # try:
+#         #     existing_user = UsersCustomer.objects.get(username=username)
+#         #     error = "Username already exists."
+#         #     return render(request, 'project_content/signup.html', {'error': error})
+#         # except UsersCustomer.DoesNotExist:
+#         #     pass
+#         # try:
+#         #     existing_user = UsersCustomer.objects.get(email=email)
+#         #     error = "Email already exists."
+#         #     return render(request, 'project_content/signup.html', {'error': error})
+#         # except UsersCustomer.DoesNotExist:
+#         #     pass
+        
+#         # Create new customer
+#         new_customer = UsersCustomer(username=username, email=email, password=password)
+#         new_customer.save()
+        
+#         return render(request, 'project_content/signup.html')
+#     else:
+#         return render(request, 'project_content/signup.html')
+    # return render(request, 'project_content/signup.html')
+
+
+def home(request):
+    return render(request,'project_content/navbar.html')
+
